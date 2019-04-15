@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="PokeDex.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PokeDex"
+    xmlns:model="using:PokeDex.Model"
+    xmlns:viewmodel="using:PokeDex.ViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.TopAppBar>
+        <CommandBar Background="Honeydew" FontSize="30" Content="Pokedex">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="About" Label="About"
+                              Click="About_Click"
+                             ></AppBarButton>
+                <AppBarButton x:Name="Exit" Label="Exit"
+                              ></AppBarButton>
+            </CommandBar.SecondaryCommands>
+            <AppBarButton x:Name="MorePokemon"
+                Icon="BrowsePhotos"></AppBarButton>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="106*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="116*"/>
+            <ColumnDefinition Width="259*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="FilterTextBox" 
+                 Text="{x:Bind pokeVM.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 PlaceholderText="Search"
+                 FontSize="24" Margin="10" Height="60"
+                 Grid.Row="0" Grid.Column="0"></TextBox>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="0">
+            <ListView x:Name="myListView" VerticalAlignment="Top"
+                      >
+                
+                <Image Source="Assets/StoreLogo.png"></Image>
+            </ListView>
+        </ScrollViewer>
+
+        <StackPanel HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1">
+            <Image x:Name="BigPokePicture"></Image>
+            <TextBlock x:Name="PokeName"></TextBlock>
+            <TextBlock x:Name="pokeInfo" Text="Pokemon goes here"></TextBlock>
+        </StackPanel>
+
+    </Grid>
+</Page>
