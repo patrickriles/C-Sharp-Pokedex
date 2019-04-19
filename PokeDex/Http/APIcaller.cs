@@ -8,7 +8,7 @@ namespace PokeDex.Http
 {
     class APIcaller
     {
-        JObject PokemonData { get; set; }
+        public JObject PokemonData { get; set; }
 
         public async void getData()
         {
@@ -20,6 +20,7 @@ namespace PokeDex.Http
             // Always catch network exceptions for async methods
             try
             {
+                //Change this so it captures all the needed data and creates a pokemon object
                 var result = await httpClient.GetStringAsync(uri);
                 PokemonData = JObject.Parse(result);
                 // Grabbing the ability array
