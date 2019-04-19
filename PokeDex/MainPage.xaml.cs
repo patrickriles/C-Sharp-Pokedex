@@ -37,5 +37,10 @@ namespace PokeDex
         {
             Frame.Navigate(typeof(AboutPage));
         }
+
+        private void All_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(GetAll));
+        }
     }
 }

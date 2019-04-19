@@ -11,7 +11,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.TopAppBar>
-        <CommandBar Background="Honeydew" FontSize="30" Content="Pokedex">
+        <CommandBar Background="Tomato" FontSize="30" Content="Pokedex">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="About" Label="About"
                               Click="About_Click"
@@ -20,7 +20,8 @@
                               ></AppBarButton>
             </CommandBar.SecondaryCommands>
             <AppBarButton x:Name="MorePokemon"
-                Icon="BrowsePhotos"></AppBarButton>
+                Icon="BrowsePhotos"
+                          Click="All_Click"></AppBarButton>
         </CommandBar>
     </Page.TopAppBar>
 
