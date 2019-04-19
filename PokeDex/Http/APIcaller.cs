@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Web.Http.Headers;
 
 
 namespace PokeDex.Http
 {
     class APIcaller
     {
+        JObject PokemonData { get; set; }
+
         public async void getData()
         {
             // Note: the URI constructor will throw an exception
@@ -24,7 +21,24 @@ namespace PokeDex.Http
             try
             {
                 var result = await httpClient.GetStringAsync(uri);
-                Debug.WriteLine(result);
+                PokemonData = JObject.Parse(result);
+                // Grabbing the ability array
+                var AbilitiesArray = PokemonData.Value<JArray>("abilities");
+                
+                // Getting the first object in array from above
+                var AbilitiesOneObject = AbilitiesArray.Value<JObject>(0);
+                
+                // Getting the first object from the object above
+                var AbilityOneObject = AbilitiesOneObject.Value<JObject>("ability");
+                
+                // Getting specific value
+                string AbilityOne = AbilityOneObject.Value<string>("name").ToString();
+
+                
+                string AbilityTwo = PokemonData.Value<JArray>("abilities").Value<JObject>(1).Value<JObject>("ability").Value<string>("name").ToString();
+
+                Debug.WriteLine(AbilityOne);
+                Debug.WriteLine(AbilityTwo);
             }
             catch (Exception ex)
             {
