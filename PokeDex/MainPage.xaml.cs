@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PokeDex.ViewModel;
 using System.Diagnostics;
+using PokeDex.Http;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,15 +27,27 @@ namespace PokeDex
     {
         PokemonViewModel pokeVM;
 
+        APIcaller fetcher;
+
+
         public MainPage()
         {
             pokeVM = new PokemonViewModel();
+            fetcher = new APIcaller();
             this.InitializeComponent();
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            Debug.Write("About");
+
+            fetcher.getData();
+            Frame.Navigate(typeof(AboutPage));
+        }
+
+        private void All_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(GetAll));
+
         }
     }
 }

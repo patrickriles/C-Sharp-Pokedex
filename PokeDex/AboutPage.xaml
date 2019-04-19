@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="PokeDex.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PokeDex"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="LightGray"
+    >
+
+    <StackPanel Margin="281,10,278,10">
+
+        <TextBlock x:Name="pageTitle" Text="About"  
+                   HorizontalAlignment="Center" 
+                   FontSize="40"
+                 Style="{StaticResource TitleTextBlockStyle}"
+                   OpticalMarginAlignment="TrimSideBearings"
+                   />
+
+
+        <TextBlock Name="AssemblyText" TextWrapping="Wrap"
+                   HorizontalAlignment="Center"
+                   IsColorFontEnabled="True"
+                   FontWeight="Thin"
+                   FontSize="18"
+                   VerticalAlignment="Center">
+        </TextBlock>
+
+    </StackPanel>
+</Page>
