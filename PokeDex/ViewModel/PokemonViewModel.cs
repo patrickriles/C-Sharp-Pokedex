@@ -18,14 +18,14 @@ namespace PokeDex.ViewModel
         public List<Pokemon> _allPokemon = new List<Pokemon>();
 
         private string _filter;
-
+       
 
         public PokemonViewModel()
         {
+           
+           
             //Add constructor items here 
         }
-
-
 
         public string Filter
         {

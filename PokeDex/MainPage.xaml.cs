@@ -26,8 +26,9 @@ namespace PokeDex
     public sealed partial class MainPage : Page
     {
         PokemonViewModel pokeVM;
+
         APIcaller fetcher;
-        
+
 
         public MainPage()
         {
@@ -38,8 +39,15 @@ namespace PokeDex
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
+
             fetcher.getData();
-            Debug.Write("About");
+            Frame.Navigate(typeof(AboutPage));
+        }
+
+        private void All_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(GetAll));
+
         }
     }
 }
