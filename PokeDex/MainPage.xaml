@@ -16,7 +16,7 @@
                 <AppBarButton x:Name="About" Label="About"
                               Click="About_Click"
                              ></AppBarButton>
-                <AppBarButton x:Name="Exit" Label="Exit"
+                <AppBarButton x:Name="Exit" Label="Exit" Click="Exit_Click"
                               ></AppBarButton>
             </CommandBar.SecondaryCommands>
             <AppBarButton x:Name="MorePokemon"
@@ -45,8 +45,8 @@
         <ScrollViewer Grid.Row="1" Grid.Column="0">
             <ListView x:Name="myListView" VerticalAlignment="Top"
                       >
-                
-                <Image Source="Assets/StoreLogo.png"></Image>
+
+                <Image Source="Assets/StoreLogo.png" HorizontalAlignment="Center" Height="250" VerticalAlignment="Center" Width="418" Margin="0,0,0,0"></Image>
             </ListView>
         </ScrollViewer>
 
