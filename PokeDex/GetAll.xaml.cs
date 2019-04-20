@@ -48,9 +48,10 @@ namespace PokeDex
             e.Handled = true;
         }
 
-        private void PAge_Loaded(object sender, RoutedEventArgs e)
-        {
-            GridViewAll.ItemsSource = new AllPokemon();
-        }
+        //private void PAge_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    GridViewAll.ItemsSource = new AllPokemon();
+           
+        //}
     }
 }

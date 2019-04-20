@@ -8,18 +8,20 @@ namespace PokeDex.Model
 {
     public class Pokemon
     {
-        string Name { get; }
-        string Height { get; }
-        string Weight { get; }
-        List<string> Abilities { get; }
-        List<string> Moves { get; }
+        public string ID { get; }
+        public string Name { get; }
+        public string Height { get; }
+        public string Weight { get; }
+        public List<string> Abilities { get; }
+        public List<string> Moves { get; }
         // If uri doesnt work make this string
-        List<string> Sprites { get; }
-        List<string> Types { get; }
+        public List<string> Sprites { get; }
+        public List<string> Types { get; }
 
-        public Pokemon(string name, string height, string weight, List<string> abilities, List<string>moves
+        public Pokemon(string id, string name, string height, string weight, List<string> abilities, List<string>moves
             , List<string> sprites, List<string>types)
         {
+            this.ID = id;
             this.Name = name;
             this.Height = height;
             this.Weight = weight;

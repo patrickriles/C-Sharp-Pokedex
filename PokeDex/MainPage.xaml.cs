@@ -27,20 +27,19 @@ namespace PokeDex
     {
         PokemonViewModel pokeVM;
 
-        APIcaller fetcher;
+       
 
 
         public MainPage()
         {
             pokeVM = new PokemonViewModel();
-            fetcher = new APIcaller();
             this.InitializeComponent();
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
 
-            fetcher.GetData();
+            
             Frame.Navigate(typeof(AboutPage));
         }
 

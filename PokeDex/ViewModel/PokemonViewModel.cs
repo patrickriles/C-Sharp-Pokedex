@@ -17,8 +17,10 @@ namespace PokeDex.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Pokemon> pokemon { get; set; }
-        APIcaller apicaller;
+        APIcaller apicaller = new APIcaller();
         public List<Pokemon> _allPokemon = new List<Pokemon>();
+        public string PokeName;
+        public string PokeImageUrl;
 
         private string _filter;
 
@@ -28,22 +30,20 @@ namespace PokeDex.ViewModel
         public PokemonViewModel()
         {
             pokemon = new ObservableCollection<Pokemon>();
-            apicaller = new APIcaller();
-           // apicaller.GetData();
-           // this.GetPokemon();
-           
+            
+            this.GetPokemon();
         }
 
-        public void GetPokemon()
+        public async void GetPokemon()
         {
             
-            this._allPokemon = apicaller.GetPokemon();
-            Debug.WriteLine(_allPokemon[0]);
+            this._allPokemon = await apicaller.GetData();           
+            PerformFiltering();
         }
 
 
 
-        public Pokemon SelectedNote
+        public Pokemon SelectedPokemon
         {
 
             get { return _selectedPokemon; }
@@ -54,24 +54,26 @@ namespace PokeDex.ViewModel
 
                 if (value == null)
                 {
-                    
+                    PokeName = "";
+                    PokeImageUrl = _allPokemon[0].Sprites[0];
                 }
                 else
                 {
-
+                    PokeName = value.Name;
+                    PokeImageUrl = value.Sprites[0];
                     //Title = value.NoteTitle;
                     //Body = value.NoteBody;
 
 
                 }
-     
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsInEdit"));
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsReadOnly"));
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeName"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeImageUrl"));
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CanSave"));
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Body"));
                 //Event to call the command functionality
-    
+
             }
         }
 

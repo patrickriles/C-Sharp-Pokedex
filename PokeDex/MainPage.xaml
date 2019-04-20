@@ -10,6 +10,27 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.DataContext>
+        <viewmodel:PokemonViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="NoteCollection"
+                              Source="{x:Bind pokeVM.pokemon}"></CollectionViewSource>
+        <DataTemplate x:Name="NotesTemplate" x:DataType="model:Pokemon">
+            <StackPanel Orientation="Horizontal" Margin="6">
+                <Image Source="{x:Bind Sprites[0]}" HorizontalAlignment="Center" Height="60" VerticalAlignment="Center" Width="60" Margin="0,0,0,0"></Image>
+                <TextBlock FontSize="20*" Text="{x:Bind Name}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <!--TextBox Style-->
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="SelectionHighlightColor" Value="GreenYellow"></Setter>
+        </Style>
+
+    </Page.Resources>
+
     <Page.TopAppBar>
         <CommandBar Background="Tomato" FontSize="30" Content="Pokedex">
             <CommandBar.SecondaryCommands>
@@ -44,16 +65,19 @@
 
         <ScrollViewer Grid.Row="1" Grid.Column="0">
             <ListView x:Name="myListView" VerticalAlignment="Top"
+                      
+                ItemsSource="{Binding Source={StaticResource NoteCollection}}"
+                ItemTemplate="{Binding Source={StaticResource NotesTemplate}}"
+                SelectedItem="{x:Bind pokeVM.SelectedPokemon, Mode=TwoWay}"
                       >
-
-                <Image Source="Assets/StoreLogo.png" HorizontalAlignment="Center" Height="250" VerticalAlignment="Center" Width="418" Margin="0,0,0,0"></Image>
+         
             </ListView>
         </ScrollViewer>
 
         <StackPanel HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1">
-            <Image x:Name="BigPokePicture"></Image>
+            <!--<Image x:Name="BigPokePicture" Source="{x:Bind pokeVM.PokeImageUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Image>-->
             <TextBlock x:Name="PokeName"></TextBlock>
-            <TextBlock x:Name="pokeInfo" Text="Pokemon goes here"></TextBlock>
+            <TextBlock x:Name="pokeInfo" Text="{x:Bind pokeVM.PokeName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
         </StackPanel>
 
     </Grid>

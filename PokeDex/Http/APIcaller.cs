@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using PokeDex.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PokeDex.Http
 {
@@ -12,16 +13,20 @@ namespace PokeDex.Http
         public JObject PokemonData { get; set; }
         public List<Pokemon> retrievedPokemon { get; set; }
 
-        public async void GetData()
+        public async Task<List<Pokemon>> GetData()
         {
-            for (int i = 1; i <= 10; i++)
+            retrievedPokemon = new List<Pokemon>();
+            Pokemon pokemon;
+
+            for (int i = 1; i <= 151; i++)
             {
 
                 // Note: the URI constructor will throw an exception
                 // if the string passed is not a valid URI
                 Uri baseURI = new Uri("https://pokeapi.co/api/v2/pokemon/");
                 Uri uri = new Uri(baseURI.ToString() + i.ToString());
-                var httpClient = new HttpClient();
+                var httpClient = new HttpClient();       
+            
    
                 try
                 {
@@ -29,6 +34,7 @@ namespace PokeDex.Http
                     var result = await httpClient.GetStringAsync(uri);
                     PokemonData = JObject.Parse(result);
 
+                    string ID = "#" + i.ToString();
                     string Name = PokemonData.Value<string>("name");
                     string Height = PokemonData.Value<string>("height");
                     string Weight = PokemonData.Value<string>("weight");
@@ -54,9 +60,9 @@ namespace PokeDex.Http
 
 
                     Sprites.Add(SpritesObject.Value<string>("front_default"));
-                    Sprites.Add(SpritesObject.Value<string>("front_female"));
-                    Sprites.Add(SpritesObject.Value<string>("back_default"));
-                    Sprites.Add(SpritesObject.Value<string>("back_female"));
+                    //Sprites.Add(SpritesObject.Value<string>("front_female"));
+                    //Sprites.Add(SpritesObject.Value<string>("back_default"));
+                    //Sprites.Add(SpritesObject.Value<string>("back_female"));
 
                     JArray TypeArray = PokemonData.Value<JArray>("types");
                     List<string> Types = new List<string>();
@@ -67,24 +73,29 @@ namespace PokeDex.Http
                         Types.Add(currentType);
                     }
 
-                    retrievedPokemon.Add(new Pokemon(Name, Height, Weight, Abilities, Moves, Sprites, Types));
-    
+                    Debug.WriteLine(ID);
+
+                    pokemon = new Pokemon(ID, Name, Height, Weight, Abilities, Moves, Sprites, Types);
+
+                    retrievedPokemon.Add(pokemon);
+                   
+                    
                 }
                 catch (Exception ex)
                 {
                     // Details in ex.Message and ex.HResult.       
                 }
-
+                
                 // Once your app is done using the HttpClient object call dispose to 
                 // free up system resources (the underlying socket and memory used for the object)
                 httpClient.Dispose();
-            }
-        }
+                //return retrievedPokemon;
 
-        public List<Pokemon> GetPokemon()
-        {
-            this.GetData();
+            }
+            // Debug.WriteLine(retrievedPokemon.Count);
             return retrievedPokemon;
         }
+
+      
     }
 }
