@@ -44,6 +44,12 @@ namespace PokeDex
             Frame.Navigate(typeof(AboutPage));
         }
 
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+
+            Application.Current.Exit();
+        }
+
         private void All_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(GetAll));
