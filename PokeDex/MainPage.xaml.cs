@@ -40,7 +40,7 @@ namespace PokeDex
         private void About_Click(object sender, RoutedEventArgs e)
         {
 
-            fetcher.getData();
+            fetcher.GetData();
             Frame.Navigate(typeof(AboutPage));
         }
 
