@@ -14,11 +14,11 @@ namespace PokeDex.Model
         List<string> Abilities { get; }
         List<string> Moves { get; }
         // If uri doesnt work make this string
-        List<Uri> Sprites { get; }
+        List<string> Sprites { get; }
         List<string> Types { get; }
 
         public Pokemon(string name, string height, string weight, List<string> abilities, List<string>moves
-            , List<Uri> sprites, List<string>types)
+            , List<string> sprites, List<string>types)
         {
             this.Name = name;
             this.Height = height;

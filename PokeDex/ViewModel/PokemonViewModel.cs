@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PokeDex.Model;
 using PokeDex.Http;
+using System.Diagnostics;
 
 namespace PokeDex.ViewModel
 {
@@ -26,8 +27,16 @@ namespace PokeDex.ViewModel
         {
             pokemon = new ObservableCollection<Pokemon>();
             apicaller = new APIcaller();
+           // apicaller.GetData();
+           // this.GetPokemon();
            
-            //Add constructor items here 
+        }
+
+        public void GetPokemon()
+        {
+            
+            this._allPokemon = apicaller.GetPokemon();
+            Debug.WriteLine(_allPokemon[0]);
         }
 
         public string Filter
