@@ -18,13 +18,49 @@ namespace PokeDex.ViewModel
         public List<Pokemon> _allPokemon = new List<Pokemon>();
 
         private string _filter;
-       
+
+        private Pokemon _selectedPokemon;
+
 
         public PokemonViewModel()
         {
            
            
             //Add constructor items here 
+        }
+
+
+
+        public Pokemon SelectedNote
+        {
+
+            get { return _selectedPokemon; }
+
+            set
+            {
+                _selectedPokemon = value;
+
+                if (value == null)
+                {
+                    
+                }
+                else
+                {
+
+                    //Title = value.NoteTitle;
+                    //Body = value.NoteBody;
+
+
+                }
+     
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsInEdit"));
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsReadOnly"));
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CanSave"));
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Body"));
+                //Event to call the command functionality
+    
+            }
         }
 
         public string Filter
