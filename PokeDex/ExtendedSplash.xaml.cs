@@ -53,7 +53,7 @@ namespace PokeDex
                 PositionImage();
 
                 // Optional: Add a progress ring to your splash screen to show users that content is loading
-                PositionRing();
+                //PositionRing();
             }
 
             // Create a Frame to act as the navigation context

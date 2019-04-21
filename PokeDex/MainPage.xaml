@@ -74,11 +74,25 @@
             </ListView>
         </ScrollViewer>
 
-        <StackPanel HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1">
-            <!--<Image x:Name="BigPokePicture" Source="{x:Bind pokeVM.PokeImageUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Image>-->
-            <TextBlock x:Name="PokeName"></TextBlock>
-            <TextBlock x:Name="pokeInfo" Text="{x:Bind pokeVM.PokeName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-        </StackPanel>
+       <StackPanel HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1"
+                   >
+            <TextBlock x:Name="pokeName" FontSize="40" FontWeight="ExtraBold" Text="{x:Bind pokeVM.PokeName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock x:Name="pokeType1" FontSize="20" Text="{x:Bind pokeVM.pokeType1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock x:Name="pokeType2" FontSize="20" Text="{x:Bind pokeVM.pokeType2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock x:Name="pokeHeight" FontSize="20" Text="{x:Bind pokeVM.pokeHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock x:Name="pokeWeight" FontSize="20" Text="{x:Bind pokeVM.pokeWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <Image x:Name="BigPokePicture" Height="200"
+                   Width="200"
+                   Source="{x:Bind pokeVM.PokeImageUrl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </Image>
+            <TextBlock Text="{x:Bind pokeVM.movesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="ExtraBold"></TextBlock>
+            <TextBlock x:Name="PokeInfo" FontSize="20" Text="{x:Bind pokeVM.PokeMove1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock x:Name="PokeInfo1" FontSize="20" Text="{x:Bind pokeVM.PokeMove2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock x:Name="PokeInfo2" FontSize="20" Text="{x:Bind pokeVM.PokeMove3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock x:Name="PokeInfo3" FontSize="20" Text="{x:Bind pokeVM.PokeMove4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        </StackPanel> 
+
+      
 
     </Grid>
 </Page>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using PokeDex.Model;
 using PokeDex.Http;
 using System.Diagnostics;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace PokeDex.ViewModel
 {
@@ -20,7 +21,16 @@ namespace PokeDex.ViewModel
         APIcaller apicaller = new APIcaller();
         public List<Pokemon> _allPokemon = new List<Pokemon>();
         public string PokeName;
-        public string PokeImageUrl;
+        public BitmapImage PokeImageUrl;
+        public string PokeMove1;
+        public string PokeMove2;
+        public string PokeMove3;
+        public string PokeMove4;
+        public string movesTitle;
+        public string pokeWeight;
+        public string pokeHeight;
+        public string pokeType1;
+        public string pokeType2;
 
         private string _filter;
 
@@ -39,6 +49,7 @@ namespace PokeDex.ViewModel
             
             this._allPokemon = await apicaller.GetData();           
             PerformFiltering();
+         
         }
 
 
@@ -55,27 +66,51 @@ namespace PokeDex.ViewModel
                 if (value == null)
                 {
                     PokeName = "";
-                    PokeImageUrl = _allPokemon[0].Sprites[0];
+                  
                 }
                 else
                 {
                     PokeName = value.Name;
-                    PokeImageUrl = value.Sprites[0];
-                    //Title = value.NoteTitle;
-                    //Body = value.NoteBody;
+                    PokeImageUrl = new BitmapImage(new Uri(@value.Sprites[1], UriKind.RelativeOrAbsolute));
 
-
+                    movesTitle = "Moves";
+                    PokeMove1 = value.Moves[0];
+                    PokeMove2 = value.Moves[1];
+                    PokeMove3 = value.Moves[2];
+                    PokeMove4 = value.Moves[3];
+                    pokeWeight = "WEIGHT: " + value.Weight;
+                    pokeHeight = "HEIGHT: " + value.Height;
+                    pokeType1 = value.Types[0];
+                    if(value.Types.Count > 1)
+                    {
+                        pokeType2 = value.Types[1];
+                    }
+                  
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeName"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeImageUrl"));
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CanSave"));
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Body"));
-                //Event to call the command functionality
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeMove1"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeMove2"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeMove3"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeMove4"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("movesTitle"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeHeight"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeWeight"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeType1"));
+                if (value.Types.Count > 1)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeType2"));
+                }
+
+
+
 
             }
         }
+
+
+      
 
         public string Filter
         {

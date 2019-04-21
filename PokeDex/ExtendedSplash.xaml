@@ -13,11 +13,13 @@
                  Stretch="UniformToFill"  />
         </Grid.Background>
         <Canvas >
-            <ProgressRing Name="splashProgressRing" IsActive="True" Width="20" HorizontalAlignment="Center"/>
+            <ProgressRing Name="splashProgressRing" IsActive="False" Width="20" HorizontalAlignment="Center"/>
         </Canvas>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <Button x:Name="DismissSplash" Content="Pokedex"
-                    Style="{StaticResource NavigationViewTitleHeaderContentControlTextStyle}" HorizontalAlignment="Center" Click="DismissSplashButton_Click" />
-        </StackPanel>
+        <Button x:Name="DismissSplash" Content="Start"
+                    BorderBrush="white"
+                    Background="white"
+                    Style="{StaticResource NavigationViewTitleHeaderContentControlTextStyle}" HorizontalAlignment="Right" Click="DismissSplashButton_Click"
+                    Canvas.Left="809" Margin="0,0,0,0" Canvas.Top="465" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>

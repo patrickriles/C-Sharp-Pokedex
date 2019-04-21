@@ -18,7 +18,7 @@ namespace PokeDex.Http
             retrievedPokemon = new List<Pokemon>();
             Pokemon pokemon;
 
-            for (int i = 1; i <= 151; i++)
+            for (int i = 1; i <= 150; i++)
             {
 
                 // Note: the URI constructor will throw an exception
@@ -44,15 +44,21 @@ namespace PokeDex.Http
 
                     List<string> Abilities = new List<string>();
                     Abilities.Add(AbilityOne);
-                    Abilities.Add(AbilityTwo);
+                    if (AbilityTwo != null)
+                    {
+                        Abilities.Add(AbilityTwo);
+                    }
 
                     List<string> Moves = new List<string>();
                     var MoveArray = PokemonData.Value<JArray>("moves");
 
                     for (int j = 0; j < MoveArray.Count; j++)
                     {
-                        string currentMove = MoveArray.Value<JObject>(j).Value<JObject>("move").Value<string>("name");
-                        Moves.Add(currentMove);
+                        if (MoveArray != null)
+                        {
+                            string currentMove = MoveArray.Value<JObject>(j).Value<JObject>("move").Value<string>("name");
+                            Moves.Add(currentMove);
+                        }
                     }
 
                     List<string> Sprites = new List<string>();
@@ -60,7 +66,7 @@ namespace PokeDex.Http
 
 
                     Sprites.Add(SpritesObject.Value<string>("front_default"));
-                    //Sprites.Add(SpritesObject.Value<string>("front_female"));
+                    Sprites.Add(SpritesObject.Value<string>("front_shiny"));
                     //Sprites.Add(SpritesObject.Value<string>("back_default"));
                     //Sprites.Add(SpritesObject.Value<string>("back_female"));
 
@@ -69,8 +75,11 @@ namespace PokeDex.Http
 
                     for (int j = 0; j < TypeArray.Count; j++)
                     {
-                        string currentType = TypeArray.Value<JObject>(j).Value<JObject>("type").Value<string>("name").ToString();
-                        Types.Add(currentType);
+                        if (TypeArray != null)
+                        {
+                            string currentType = TypeArray.Value<JObject>(j).Value<JObject>("type").Value<string>("name").ToString();
+                            Types.Add(currentType);
+                        }
                     }
 
                     Debug.WriteLine(ID);
