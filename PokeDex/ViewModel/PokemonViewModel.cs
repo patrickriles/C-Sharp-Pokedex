@@ -22,6 +22,7 @@ namespace PokeDex.ViewModel
         public List<Pokemon> _allPokemon = new List<Pokemon>();
         public string PokeName;
         public BitmapImage PokeImageUrl;
+        public BitmapImage PokeImageUrl2;
         public string PokeMove1;
         public string PokeMove2;
         public string PokeMove3;
@@ -31,6 +32,7 @@ namespace PokeDex.ViewModel
         public string pokeHeight;
         public string pokeType1;
         public string pokeType2;
+        public string StatTitle;
 
         private string _filter;
 
@@ -72,14 +74,19 @@ namespace PokeDex.ViewModel
                 {
                     PokeName = value.Name;
                     PokeImageUrl = new BitmapImage(new Uri(@value.Sprites[1], UriKind.RelativeOrAbsolute));
+                    PokeImageUrl2 = new BitmapImage(new Uri(@value.Sprites[0], UriKind.RelativeOrAbsolute));
 
+                    StatTitle = "Stats";
                     movesTitle = "Moves";
                     PokeMove1 = value.Moves[0];
-                    PokeMove2 = value.Moves[1];
-                    PokeMove3 = value.Moves[2];
-                    PokeMove4 = value.Moves[3];
-                    pokeWeight = "WEIGHT: " + value.Weight;
-                    pokeHeight = "HEIGHT: " + value.Height;
+                    if (value.Moves.Count > 1)
+                    {
+                        PokeMove2 = value.Moves[1];
+                        PokeMove3 = value.Moves[2];
+                        PokeMove4 = value.Moves[3];
+                    }
+                    pokeWeight = "Weight: " + value.Weight;
+                    pokeHeight = "Height: " + value.Height;
                     pokeType1 = value.Types[0];
                     if(value.Types.Count > 1)
                     {
@@ -90,11 +97,13 @@ namespace PokeDex.ViewModel
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeName"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeImageUrl"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeImageUrl2"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeMove1"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeMove2"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeMove3"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeMove4"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("movesTitle"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StatTitle"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeHeight"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeWeight"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeType1"));
