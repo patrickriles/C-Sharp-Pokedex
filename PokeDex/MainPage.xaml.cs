@@ -27,13 +27,10 @@ namespace PokeDex
     {
         PokemonViewModel pokeVM;
 
-       
-
-
         public MainPage()
         {
-            pokeVM = new PokemonViewModel();
             this.InitializeComponent();
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
@@ -51,8 +48,13 @@ namespace PokeDex
 
         private void All_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(GetAll));
+            Frame.Navigate(typeof(GetAll), pokeVM);
 
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            pokeVM = (PokemonViewModel)e.Parameter;
         }
     }
 }

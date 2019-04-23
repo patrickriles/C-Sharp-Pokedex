@@ -28,7 +28,7 @@ namespace PokeDex
         public GetAll()
         {
             this.InitializeComponent();
-            pokeVM = new PokemonViewModel();
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -37,6 +37,8 @@ namespace PokeDex
                 AppViewBackButtonVisibility.Visible;
 
             SystemNavigationManager.GetForCurrentView().BackRequested += About_BackRequested;
+
+            pokeVM = (PokemonViewModel)e.Parameter;
         }
 
         private void About_BackRequested(object sender, BackRequestedEventArgs e)
