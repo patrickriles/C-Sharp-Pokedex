@@ -42,15 +42,17 @@ namespace PokeDex.ViewModel
         public PokemonViewModel()
         {
             pokemon = new ObservableCollection<Pokemon>();
-            apicaller = new APIcaller();
+            apicaller = new APIcaller(this);
             this.GetPokemon();
         }
 
         public async void GetPokemon()
         {
-            
-            this._allPokemon = await apicaller.GetData();           
-            PerformFiltering();
+            for (int i = 1; i <= 151; i++)
+            {
+                this._allPokemon.Add(await apicaller.GetData(i));
+                PerformFiltering();
+            }
          
         }
 

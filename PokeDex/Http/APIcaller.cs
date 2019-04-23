@@ -5,26 +5,27 @@ using System.Net.Http;
 using PokeDex.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PokeDex.ViewModel;
 
 namespace PokeDex.Http
 {
     public class APIcaller
     {
         public JObject PokemonData { get; set; }
-        public List<Pokemon> retrievedPokemon { get; set; }
+        public Pokemon retrievedPokemon { get; set; }
+        private PokemonViewModel pokeVM;
 
-        public APIcaller()
+        public APIcaller(PokemonViewModel vm)
         {
-
+            this.pokeVM = vm;
         }
 
-        public async Task<List<Pokemon>> GetData()
+        public async Task<Pokemon> GetData(int i)
         {
-            retrievedPokemon = new List<Pokemon>();
+            //retrievedPokemon = new Pokemon();
             Pokemon pokemon;
 
-            for (int i = 1; i <= 151; i++)
-            {
+         
 
                 // Note: the URI constructor will throw an exception
                 // if the string passed is not a valid URI
@@ -88,8 +89,8 @@ namespace PokeDex.Http
 
                     pokemon = new Pokemon(ID, Name, Height, Weight, Abilities, Moves, Sprites, Types);
 
-                    retrievedPokemon.Add(pokemon);
-                                       
+                return pokemon;
+               
                 }
                 catch (Exception ex)
                 {
@@ -101,7 +102,7 @@ namespace PokeDex.Http
                 httpClient.Dispose();
                 //return retrievedPokemon;
 
-            }
+            
             // Debug.WriteLine(retrievedPokemon.Count);
             return retrievedPokemon;
         }
