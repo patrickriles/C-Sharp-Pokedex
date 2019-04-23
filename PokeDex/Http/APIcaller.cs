@@ -14,6 +14,7 @@ namespace PokeDex.Http
         public JObject PokemonData { get; set; }
         public Pokemon retrievedPokemon { get; set; }
         private PokemonViewModel pokeVM;
+        string output;
 
         public APIcaller(PokemonViewModel vm)
         {
@@ -41,7 +42,7 @@ namespace PokeDex.Http
                     PokemonData = JObject.Parse(result);
 
                     string ID = "#" + i.ToString();
-                    string Name = PokemonData.Value<string>("name");
+                    string Name = stringFormat(PokemonData.Value<string>("name"));
                     string Height = PokemonData.Value<string>("height");
                     string Weight = PokemonData.Value<string>("weight");
 
@@ -51,7 +52,7 @@ namespace PokeDex.Http
                     for (int j = 0; j < AbilityArray.Count; j++)
                     {
                         string currentAbility = AbilityArray.Value<JObject>(j).Value<JObject>("ability").Value<string>("name").ToString();
-                        Abilities.Add(currentAbility);
+                        Abilities.Add(stringFormat(currentAbility));
                     }
 
                    
@@ -63,7 +64,7 @@ namespace PokeDex.Http
                         if (MoveArray != null)
                         {
                             string currentMove = MoveArray.Value<JObject>(j).Value<JObject>("move").Value<string>("name");
-                            Moves.Add(currentMove);
+                            Moves.Add(stringFormat(currentMove));
                         }
                     }
                    
@@ -81,7 +82,7 @@ namespace PokeDex.Http
                         if (TypeArray != null)
                         {
                             string currentType = TypeArray.Value<JObject>(j).Value<JObject>("type").Value<string>("name").ToString();
-                            Types.Add(currentType);
+                            Types.Add(stringFormat(currentType));
                         }
                     }
 
@@ -105,6 +106,40 @@ namespace PokeDex.Http
             
             // Debug.WriteLine(retrievedPokemon.Count);
             return retrievedPokemon;
+        }
+
+        private string stringFormat(string input)
+        {
+
+            //string output;
+            int count = 0;
+            output = "";
+
+            foreach (char c in input)
+            {
+                if (count == 0)
+                {
+                    output += c.ToString().ToUpper();
+                }
+
+                else if (input[count - 1] == ' ' || input[count - 1] == '-')
+                {
+                    output += c.ToString().ToUpper();
+                }
+
+                else if (c == (char)'-')
+                {
+                    output += " ";
+                }
+
+                else
+                {
+                    output += c;
+                }
+                count++;
+            }
+
+            return output;
         }
 
       
