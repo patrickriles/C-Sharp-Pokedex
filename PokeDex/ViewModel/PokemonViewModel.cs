@@ -46,7 +46,7 @@ namespace PokeDex.ViewModel
 
         public async void GetPokemon()
         {
-            for (int i = 1; i <= 151; i++)
+            for (int i = 1; i <= 500; i++)
             {
                 this._allPokemon.Add(await apicaller.GetData(i));
                 PerformFiltering();

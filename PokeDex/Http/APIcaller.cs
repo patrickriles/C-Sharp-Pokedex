@@ -28,8 +28,7 @@ namespace PokeDex.Http
 
 
 
-            for (int i = 1; i <= 150; i++)
-            {
+            
 
                 // Note: the URI constructor will throw an exception
                 // if the string passed is not a valid URI
@@ -105,7 +104,7 @@ namespace PokeDex.Http
                 //return retrievedPokemon;
 
 
-            }
+            
             httpClient.Dispose();
 
             // Debug.WriteLine(retrievedPokemon.Count);

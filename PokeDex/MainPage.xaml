@@ -94,14 +94,14 @@
 
             <StackPanel Grid.Row="2" Orientation="Horizontal">
                 <StackPanel Margin="50 20" HorizontalAlignment="Center">
-                    <TextBlock Text="{x:Bind pokeVM.movesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="ExtraBold"></TextBlock>
+                    <TextBlock FontSize="40" Text="{x:Bind pokeVM.movesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="ExtraBold"></TextBlock>
                     <TextBlock  x:Name="PokeMoves1" FontSize="20" Text="{x:Bind pokeVM.PokeMove1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     <TextBlock  x:Name="PokeMoves2" FontSize="20" Text="{x:Bind pokeVM.PokeMove2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     <TextBlock x:Name="PokeMoves3"  FontSize="20" Text="{x:Bind pokeVM.PokeMove3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     <TextBlock  x:Name="PokeMoves4" FontSize="20" Text="{x:Bind pokeVM.PokeMove4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 </StackPanel>
                 <StackPanel Margin="50 20" HorizontalAlignment="Center">
-                    <TextBlock  Text="{x:Bind pokeVM.StatTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="ExtraBold"></TextBlock>
+                    <TextBlock FontSize="40"  Text="{x:Bind pokeVM.StatTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="ExtraBold"></TextBlock>
                     <TextBlock  x:Name="pokeType2" FontSize="20" Text="{x:Bind pokeVM.pokeType2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     <TextBlock  x:Name="pokeType1" FontSize="20" Text="{x:Bind pokeVM.pokeType1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                     <TextBlock x:Name="pokeHeight"  FontSize="20" Text="{x:Bind pokeVM.pokeHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>

@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PokeDex.ViewModel;
+using Windows.UI.ViewManagement;
+using Windows.UI;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -36,6 +38,10 @@ namespace PokeDex
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                 AppViewBackButtonVisibility.Visible;
 
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.ButtonBackgroundColor = Colors.Maroon;
+            titleBar.ButtonForegroundColor = Colors.Yellow;
+
             SystemNavigationManager.GetForCurrentView().BackRequested += About_BackRequested;
 
             pokeVM = (PokemonViewModel)e.Parameter;
@@ -48,6 +54,9 @@ namespace PokeDex
                 Frame.GoBack();
             }
             e.Handled = true;
+
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+          AppViewBackButtonVisibility.Collapsed;
         }
 
     }

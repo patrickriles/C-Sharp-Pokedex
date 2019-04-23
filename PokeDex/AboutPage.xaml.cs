@@ -37,6 +37,7 @@ namespace PokeDex
             var assemblyName = assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title;
             var assemblyCopy = assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright;
             var assemblyDesc = assembly.GetCustomAttribute<AssemblyDescriptionAttribute>().Description;
+            var assemblyComp = assembly.GetCustomAttribute<AssemblyCompanyAttribute>().Company;
             AssemblyText.Text += "\n";
             AssemblyText.Text += "\n";
             AssemblyText.Text += "\n";
@@ -50,10 +51,14 @@ namespace PokeDex
             AssemblyText.Text += assemblyCopy;
             AssemblyText.Text += "\n";
             AssemblyText.Text += "\n";
-            AssemblyText.Text += "DESCRIPTION: \n" + assemblyDesc;
+            AssemblyText.Text += "DESCRIPTION: " + assemblyDesc;
             AssemblyText.Text += "\n";
-            AssemblyText.Text += "DEVELOPERS: \n" + "Bryan Savue, " +
+            AssemblyText.Text += "\n";
+            AssemblyText.Text += "DEVELOPERS: Bryan Savue, " +
                 "Hadley Igoe, & Patrick Riles";
+            AssemblyText.Text += "\n";
+            AssemblyText.Text += "\n";
+            AssemblyText.Text += "COMPANY: " + assemblyComp;
 
 
         }
