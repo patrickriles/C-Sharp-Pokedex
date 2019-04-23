@@ -28,7 +28,8 @@
     </Page.Resources>
 
     <Page.TopAppBar>
-        <AppBar x:Name="MyAppBar" Height="80" Background="Tomato">
+        <AppBar x:Name="MyAppBar" Height="80" Background="Tomato"
+                IsOpen="True">
             <TextBox x:Name="FilterTextBox" 
                  Text="{x:Bind pokeVM.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  PlaceholderText="Search"
@@ -39,13 +40,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-       
-          
-           <!-- <GridView.ItemTemplate>
-                
-                <StaticResource ResourceKey="DataTemplateGridView"/>
-            </GridView.ItemTemplate> -->
-        <GridView x:Name="GridViewAll" Margin="0 100 0 0 " Padding="100 0 0 10" 
+        <GridView x:Name="GridViewAll" Margin="0 0 0 0 " Padding="100 0 0 10" 
                  ItemsSource="{Binding Source={StaticResource DataSource}}"
                 ItemTemplate="{Binding Source={StaticResource DataTemplateGridView}}"
                   >
