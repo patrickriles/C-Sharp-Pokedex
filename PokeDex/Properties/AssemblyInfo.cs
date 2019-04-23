@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PokeDex")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A way to view all your favorite pokemon!")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("AwesomeCO")]
 [assembly: AssemblyProduct("PokeDex")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]

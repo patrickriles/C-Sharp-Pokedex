@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using PokeDex.ViewModel;
 using System.Diagnostics;
 using PokeDex.Http;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -31,6 +32,8 @@ namespace PokeDex
         {
             this.InitializeComponent();
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+            AppViewBackButtonVisibility.Collapsed;
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
