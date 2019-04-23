@@ -18,7 +18,7 @@ namespace PokeDex.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Pokemon> pokemon { get; set; }
-        APIcaller apicaller = new APIcaller();
+        APIcaller apicaller;
         public List<Pokemon> _allPokemon = new List<Pokemon>();
         public string PokeName;
         public BitmapImage PokeImageUrl;
@@ -40,7 +40,7 @@ namespace PokeDex.ViewModel
         public PokemonViewModel()
         {
             pokemon = new ObservableCollection<Pokemon>();
-            
+            apicaller = new APIcaller();
             this.GetPokemon();
         }
 
@@ -98,7 +98,7 @@ namespace PokeDex.ViewModel
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeHeight"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeWeight"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeType1"));
-                if (value.Types.Count > 1)
+                if (value.Types.Count > 1 || value != null)
                 {
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeType2"));
                 }

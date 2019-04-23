@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PokeDex.Http;
 using System.Diagnostics;
+using PokeDex.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,11 +32,13 @@ namespace PokeDex
         internal Rect splashImageRect; // Rect to store splash screen image coordinates.
         private SplashScreen splash; // Variable to hold the splash screen object.
         internal bool dismissed = false; // Variable to track splash screen dismissal status.
-        internal Frame rootFrame;      
+        internal Frame rootFrame;
+        PokemonViewModel pokeVM;
 
         public ExtendedSplash(SplashScreen splashscreen, bool loadState)
         {
-            InitializeComponent();          
+            InitializeComponent();
+            pokeVM = new PokemonViewModel();
 
             // Listen for window resize events to reposition the extended splash screen image accordingly.
             // This is important to ensure that the extended splash screen is formatted properly in response to snapping, unsnapping, rotation, etc...
@@ -109,7 +112,7 @@ namespace PokeDex
         void DismissExtendedSplash()
         {
             // Navigate to mainpage
-            rootFrame.Navigate(typeof(MainPage));
+            rootFrame.Navigate(typeof(MainPage), pokeVM);
             // Place the frame in the current Window
             Window.Current.Content = rootFrame;
         }
