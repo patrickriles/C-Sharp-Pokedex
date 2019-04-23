@@ -17,17 +17,16 @@ namespace PokeDex.Http
         {
             retrievedPokemon = new List<Pokemon>();
             Pokemon pokemon;
+            HttpClient httpClient = new HttpClient(); 
+
 
             for (int i = 1; i <= 150; i++)
             {
-
                 // Note: the URI constructor will throw an exception
                 // if the string passed is not a valid URI
+
                 Uri baseURI = new Uri("https://pokeapi.co/api/v2/pokemon/");
                 Uri uri = new Uri(baseURI.ToString() + i.ToString());
-                var httpClient = new HttpClient();       
-            
-   
                 try
                 {
                     //Change this so it captures all the needed data and creates a pokemon object
@@ -57,7 +56,7 @@ namespace PokeDex.Http
                         if (MoveArray != null)
                         {
                             string currentMove = MoveArray.Value<JObject>(j).Value<JObject>("move").Value<string>("name");
-                            Moves.Add(currentMove);
+                            Moves.Add(currentMove.ToUpper());
                         }
                     }
 
@@ -78,7 +77,7 @@ namespace PokeDex.Http
                         if (TypeArray != null)
                         {
                             string currentType = TypeArray.Value<JObject>(j).Value<JObject>("type").Value<string>("name").ToString();
-                            Types.Add(currentType);
+                            Types.Add(currentType.ToUpper());
                         }
                     }
 
@@ -97,10 +96,11 @@ namespace PokeDex.Http
                 
                 // Once your app is done using the HttpClient object call dispose to 
                 // free up system resources (the underlying socket and memory used for the object)
-                httpClient.Dispose();
+                
                 //return retrievedPokemon;
 
             }
+            httpClient.Dispose();
             // Debug.WriteLine(retrievedPokemon.Count);
             return retrievedPokemon;
         }
