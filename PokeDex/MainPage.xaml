@@ -20,7 +20,7 @@
         <DataTemplate x:Name="NotesTemplate" x:DataType="model:Pokemon">
             <StackPanel Orientation="Horizontal" Margin="6">
                 <Image Source="{x:Bind Sprites[0]}" HorizontalAlignment="Center" Height="60" VerticalAlignment="Center" Width="60" Margin="0,0,0,0"></Image>
-                <TextBlock FontSize="20*" Text="{x:Bind Name}"></TextBlock>
+                <TextBlock FontSize="20*" Text="{x:Bind Name.ToUpper()}"></TextBlock>
             </StackPanel>
         </DataTemplate>
 
@@ -32,10 +32,8 @@
     </Page.Resources>
 
     <Page.TopAppBar>
-        <CommandBar Background="Tomato" FontWeight="ExtraBold" 
-                    HorizontalContentAlignment="Center"
-                    FontFamily="Comic Sans MS"
-                    FontSize="40" Content="Pokedex">
+        <CommandBar Background="Red" FontWeight="ExtraBold" 
+                    HorizontalContentAlignment="Center">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="About" Label="About"
                               Click="About_Click"
@@ -53,20 +51,21 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="19*"/>
+            <RowDefinition Height="19*"/>
             <RowDefinition Height="106*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="116*"/>
             <ColumnDefinition Width="259*"/>
         </Grid.ColumnDefinitions>
-
+        <Image Grid.Row="0" Grid.Column="0" Width="400" Source="Assets\pokedex.jpg"/>
         <TextBox x:Name="FilterTextBox" 
                  Text="{x:Bind pokeVM.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  PlaceholderText="Search"
                  FontSize="24" Margin="10" Height="60"
-                 Grid.Row="0" Grid.Column="0"></TextBox>
+                 Grid.Row="1" Grid.Column="0"></TextBox>
 
-        <ScrollViewer Grid.Row="1" Grid.Column="0">
+        <ScrollViewer Grid.Row="2" Grid.Column="0">
             <ListView x:Name="myListView" VerticalAlignment="Top"
                       
                 ItemsSource="{Binding Source={StaticResource NoteCollection}}"

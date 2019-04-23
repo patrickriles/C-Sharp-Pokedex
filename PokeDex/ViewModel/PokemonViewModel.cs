@@ -12,8 +12,6 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace PokeDex.ViewModel
 {
-    
-        
     public class PokemonViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -35,14 +33,14 @@ namespace PokeDex.ViewModel
         public string StatTitle;
 
         private string _filter;
-
         private Pokemon _selectedPokemon;
-
 
         public PokemonViewModel()
         {
             pokemon = new ObservableCollection<Pokemon>();
+
             apicaller = new APIcaller(this);
+
             this.GetPokemon();
         }
 
@@ -55,8 +53,6 @@ namespace PokeDex.ViewModel
             }
          
         }
-
-
 
         public Pokemon SelectedPokemon
         {
@@ -74,27 +70,26 @@ namespace PokeDex.ViewModel
                 }
                 else
                 {
-                    PokeName = value.Name;
+                    PokeName = value.Name.ToUpper();
                     PokeImageUrl = new BitmapImage(new Uri(@value.Sprites[1], UriKind.RelativeOrAbsolute));
                     PokeImageUrl2 = new BitmapImage(new Uri(@value.Sprites[0], UriKind.RelativeOrAbsolute));
 
                     StatTitle = "Stats";
                     movesTitle = "Moves";
-                    PokeMove1 = value.Moves[0];
+                    PokeMove1 = value.Moves[0].ToUpper();
                     if (value.Moves.Count > 1)
                     {
-                        PokeMove2 = value.Moves[1];
-                        PokeMove3 = value.Moves[2];
-                        PokeMove4 = value.Moves[3];
+                        PokeMove2 = value.Moves[1].ToUpper();
+                        PokeMove3 = value.Moves[2].ToUpper();
+                        PokeMove4 = value.Moves[3].ToUpper();
                     }
-                    pokeWeight = "Weight: " + value.Weight;
-                    pokeHeight = "Height: " + value.Height;
+                    pokeWeight = "WEIGHT: " + value.Weight;
+                    pokeHeight = "HEIGHT: " + value.Height;
                     pokeType1 = value.Types[0];
                     if(value.Types.Count > 1)
                     {
-                        pokeType2 = value.Types[1];
+                        pokeType2 = value.Types[1].ToUpper();
                     }
-                  
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PokeName"));
@@ -113,15 +108,8 @@ namespace PokeDex.ViewModel
                 {
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("pokeType2"));
                 }
-
-
-
-
             }
-        }
-
-
-      
+        }     
 
         public string Filter
         {
@@ -134,8 +122,6 @@ namespace PokeDex.ViewModel
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Filter)));
             }
         }
-
-        
 
         /// <summary>
         /// Filters all values and puts them back into the list
@@ -165,7 +151,6 @@ namespace PokeDex.ViewModel
 
             for (int i = 0; i < resultCount; i++)
             {
-
                 var resultItem = result[i];
                 if (i + 1 > pokemon.Count || !pokemon[i].Equals(resultItem))
                 {
@@ -173,7 +158,5 @@ namespace PokeDex.ViewModel
                 }
             }
         }
-
-
     }
 }
